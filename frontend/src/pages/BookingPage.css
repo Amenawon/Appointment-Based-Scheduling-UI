@@ -1,0 +1,10 @@
+
+.booking-container {
+    display: flex;
+    gap: 20px;
+    min-height: 100vh;
+}
+
+.left-column { flex: 0.5; }
+.middle-column { flex: 2; }
+.right-column { flex: 1; }
