@@ -12,11 +12,11 @@ function BookingPage() {
             <div className="column left-column">
                 <h2>Choose attendees</h2>
                 <input type="text" placeholder="Enter attendees here" className="attendees-textbox"/>
-                <h2>Insert appointment duration</h2>
+                <h2>Appointment duration</h2>
                 <input type="text" placeholder="Enter duration here" className="appointment-duration-textbox"/>
-                <h2>Insert appointment description</h2>
+                <h2>Appointment description</h2>
                 <input type="text" placeholder="Enter description here" className="appointment-description-textbox"/>
-                <h2>Insert appointment location</h2>
+                <h2>Appointment location</h2>
                 <input type="text" placeholder="Enter location here" className="appointment-location-textbox"/>
             </div>
             <div className="column middle-column">
