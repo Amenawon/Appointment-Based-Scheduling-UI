@@ -14,6 +14,8 @@ function BookingPage() {
                 <input type="text" placeholder="Enter attendees here" className="attendees-textbox"/>
                 <h2>Appointment duration</h2>
                 <input type="text" placeholder="Enter duration here" className="appointment-duration-textbox"/>
+                <h2>Appointment title</h2>
+                <input type="text" placeholder="Enter title here" className="appointment-title-textbox"/>
                 <h2>Appointment description</h2>
                 <input type="text" placeholder="Enter description here" className="appointment-description-textbox"/>
                 <h2>Appointment location</h2>
@@ -29,6 +31,7 @@ function BookingPage() {
             </div>
             <div className="column right-column">
                 <h2>Available time slots</h2>
+                <button className="app-book-btn">Book</button>
             </div>
         </div>
         </div>

@@ -13,4 +13,18 @@
     width: 200px;
 }
 .middle-column { flex: 2; }
-.right-column { flex: 1; }
+.right-column { 
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+ }
+.right-column button {
+    margin: 10px 0;
+    padding: 8px;
+    width: 250px;
+}
+.app-book-btn {
+    font-size: 20px;
+}
