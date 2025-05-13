@@ -81,15 +81,50 @@ function BookingPage() {
         <div className="booking-container">
             <div className="column left-column">
                 <h2>Choose attendees</h2>
-                <input type="text" placeholder="Enter attendees here" className="attendees-textbox"/>
+                <input 
+                    type="text" 
+                    name="attendees" 
+                    value={formData.attendees}
+                    onChange={handleInputChange}
+                    placeholder="Enter attendees here" 
+                    className="attendees-textbox"
+                />
                 <h2>Appointment duration</h2>
-                <input type="text" placeholder="Enter duration here" className="appointment-duration-textbox"/>
+                <input 
+                    type="text" 
+                    name="duration" 
+                    value={formData.duration}
+                    onChange={handleInputChange}
+                    placeholder="Enter duration here" 
+                    className="appointment-duration-textbox"
+                />
                 <h2>Appointment title</h2>
-                <input type="text" placeholder="Enter title here" className="appointment-title-textbox"/>
+                <input 
+                    type="text" 
+                    name="title" 
+                    value={formData.title}
+                    onChange={handleInputChange}
+                    placeholder="Enter title here" 
+                    className="appointment-title-textbox"
+                />
                 <h2>Appointment description</h2>
-                <input type="text" placeholder="Enter description here" className="appointment-description-textbox"/>
+                <input 
+                    type="text" 
+                    name="description" 
+                    value={formData.description}
+                    onChange={handleInputChange}
+                    placeholder="Enter description here" 
+                    className="appointment-description-textbox"
+                />
                 <h2>Appointment location</h2>
-                <input type="text" placeholder="Enter location here" className="appointment-location-textbox"/>
+                <input 
+                    type="text" 
+                    name="location" 
+                    value={formData.location}
+                    onChange={handleInputChange}
+                    placeholder="Enter location here" 
+                    className="appointment-location-textbox"
+                />
             </div>
             <div className="column middle-column">
                 <h2>Choose appointment date</h2>
