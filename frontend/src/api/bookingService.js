@@ -1,4 +1,4 @@
-import apiClient from './client'; // Import from your centralized config
+import apiClient from './client';
 
 const BookingService = {
   async getAppointments() {
@@ -13,9 +13,7 @@ const BookingService = {
 
   async createAppointment(appointmentData) {
     try {
-      console.log("Would send to API:", appointmentData);
-      return { success: true, appointmentData }; // Mock response
-      const response = await apiClient.post('/appointments', appointmentData);
+      const response = await apiClient.post('/api/Appointment', appointmentData);
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -29,7 +27,6 @@ const BookingService = {
       }
     }
   }
-  // ... other methods
 };
 
 export default BookingService;

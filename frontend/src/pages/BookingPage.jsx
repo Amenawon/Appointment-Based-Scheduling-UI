@@ -7,12 +7,14 @@ import BookingService from '../api/bookingService';
 function BookingPage() {
     const [selectedDate, setSelectedDate] = useState(null);
     const [formData, setFormData] = useState({
-        attendees: '',
+        listAttendees: '',
         duration: '',
         title: '',
         description: '',
         location: '',
-        timeSlot: '' 
+        timeSlot: '',
+        status: '',
+        organiserEmail: ''
     });
     const [error, setError] = useState('');
 
@@ -29,36 +31,41 @@ function BookingPage() {
             const appointmentData = {
                 date: selectedDate.toISOString().split('T')[0], // Format as YYYY-MM-DD
                 time: formData.timeSlot, 
-                attendees: formData.attendees,
+                listAttendees: formData.listAttendees
+                .split(',')
+                .map(email => email.trim())
+                .filter(email => email.length > 0)
+                .map(email => ({
+                    attendeeEmail: email,
+                    role: 'Attendee',
+                    rsvpStatus: 'Accepted'
+                })),
                 durationMinutes: parseInt(formData.duration),
                 title: formData.title,
                 description: formData.description,
-                location: formData.location
+                location: formData.location,
+                status: formData.status,
+                organiserEmail: formData.organiserEmail
             };
 
-            // Call your booking service
-            //const response = await BookingService.createAppointment(appointmentData);
-
-            try {
-            console.log("Test log before API call"); // Check if this appears
+            //Call your booking service
             const response = await BookingService.createAppointment(appointmentData);
-            } catch (err) {
-            console.error("Error:", err); // Check for silent errors
-            }
             
             // Handle success
-            //console.log('Booking successful:', response);
+            console.log('Booking successful:', response);
             alert('Appointment booked successfully!');
             
             // Reset form (optional)
             setSelectedDate(null);
             setFormData({
-                attendees: '',
+                listAttendees: '',
                 duration: '',
                 title: '',
                 description: '',
                 location: '',
-                timeSlot: ''
+                timeSlot: '',
+                status: '',
+                organiserEmail: ''
             });
 
         } catch (err) {
@@ -83,11 +90,25 @@ function BookingPage() {
                 <h2>Choose attendees</h2>
                 <input 
                     type="text" 
-                    name="attendees" 
-                    value={formData.attendees}
-                    onChange={handleInputChange}
-                    placeholder="Enter attendees here" 
+                    name="listAttendees" 
+                    value={formData.listAttendees}
+                    onChange={(e) =>{
+                        setFormData(prev => ({
+                            ...prev,
+                            listAttendees: e.target.value
+                        }));
+                    }}
+                    placeholder="Enter attendee emails" 
                     className="attendees-textbox"
+                />
+                <h2>Add Organiser email</h2>
+                <input 
+                    type="text" 
+                    name="organiserEmail" 
+                    value={formData.organiserEmail}
+                    onChange={handleInputChange}
+                    placeholder="Enter Organiser email here" 
+                    className="organiser-email-textbox"
                 />
                 <h2>Appointment duration</h2>
                 <input 
@@ -116,14 +137,14 @@ function BookingPage() {
                     placeholder="Enter description here" 
                     className="appointment-description-textbox"
                 />
-                <h2>Appointment location</h2>
+                <h2>Appointment status</h2>
                 <input 
                     type="text" 
-                    name="location" 
-                    value={formData.location}
+                    name="status" 
+                    value={formData.status}
                     onChange={handleInputChange}
-                    placeholder="Enter location here" 
-                    className="appointment-location-textbox"
+                    placeholder="Enter appointment status here" 
+                    className="appointment-status-textbox"
                 />
             </div>
             <div className="column middle-column">
@@ -131,7 +152,7 @@ function BookingPage() {
                 <DatePicker
                     selected={selectedDate}
                     onChange={(date) => setSelectedDate(date)}
-                    placeholderText="Select appointment date"
+                    inline
                 />
             </div>
             <div className="column right-column">
