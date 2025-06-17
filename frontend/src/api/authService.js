@@ -1,19 +1,30 @@
 import apiClient from './client';
 import client from './client';
 
-const AuthService = {
-    async login(loginDetails) {
+export async function login(email, password) {
         try {
-            const response = await apiClient.post('/api/User/login', loginDetails);
-            return response.data;
-        } catch {
-            if (error.response) {
-                console.error('API Error:', error.response.data);
-                throw new Error(error.response.data.message || 'Booking failed');
-            } else {
-                console.error('Network Error:', error.message);
-                throw new Error('Network Error. Please try again.');
-            }
-        }
+            const response = await apiClient.post('/api/User/login', { email, password });
+                    // If the server returns a token?
+        const { token, user } = response.data;
+
+        localStorage.setItem('token', token);
+        return { success: true, data: user };
+    } catch (error) {
+        return {
+            success: false,
+            error: error.response?.data?.message || 'Login failed'
+        };
     }
-};
+}
+
+export function logout() {
+    localStorage.removeItem('token');
+}
+
+export function isLoggedIn() {
+    return !!localStorage.getItem('token');
+}
+
+export function getToken() {
+    return localStorage.getItem('token');
+}

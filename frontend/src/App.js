@@ -1,14 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AuthPage from './pages/AuthPage';
 import BookingPage from './pages/BookingPage';
+import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <BookingPage />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<AuthPage />} />
+          <Route path="/booking" element={<BookingPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
 export default App;
+
