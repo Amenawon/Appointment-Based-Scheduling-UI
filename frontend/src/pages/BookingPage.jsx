@@ -29,7 +29,7 @@ function BookingPage() {
         try {
             // Prepare data for API
             const appointmentData = {
-                date: selectedDate.toISOString().split('T')[0], // Format as YYYY-MM-DD
+                date: selectedDate.toLocaleString().split(',')[0], // Format as YYYY-MM-DD
                 time: formData.timeSlot, 
                 listAttendees: formData.listAttendees
                 .split(',')
@@ -47,6 +47,8 @@ function BookingPage() {
                 status: formData.status,
                 organiserEmail: formData.organiserEmail
             };
+            console.log(selectedDate)
+            console.log(appointmentData.date)
 
             //Call your booking service
             const response = await BookingService.createAppointment(appointmentData);
@@ -136,6 +138,15 @@ function BookingPage() {
                     onChange={handleInputChange}
                     placeholder="Enter description here" 
                     className="appointment-description-textbox"
+                />
+                <h2>Appointment location</h2>
+                <input 
+                    type="text" 
+                    name="location" 
+                    value={formData.location}
+                    onChange={handleInputChange}
+                    placeholder="Enter appointment location here" 
+                    className="appointment-location-textbox"
                 />
                 <h2>Appointment status</h2>
                 <input 
