@@ -13,7 +13,6 @@ function BookingPage() {
         description: '',
         location: '',
         timeSlot: '',
-        status: '',
         organiserEmail: ''
     });
     useEffect(() => {
@@ -54,7 +53,6 @@ function BookingPage() {
                 title: formData.title,
                 description: formData.description,
                 location: formData.location,
-                status: formData.status,
                 organiserEmail: formData.organiserEmail
             };
             console.log(selectedDate)
@@ -76,7 +74,6 @@ function BookingPage() {
                 description: '',
                 location: '',
                 timeSlot: '',
-                status: '',
                 organiserEmail: formData.organiserEmail
             });
 
@@ -157,15 +154,6 @@ function BookingPage() {
                     onChange={handleInputChange}
                     placeholder="Enter appointment location here" 
                     className="appointment-location-textbox"
-                />
-                <h2>Appointment status</h2>
-                <input 
-                    type="text" 
-                    name="status" 
-                    value={formData.status}
-                    onChange={handleInputChange}
-                    placeholder="Enter appointment status here" 
-                    className="appointment-status-textbox"
                 />
             </div>
             <div className="column middle-column">
