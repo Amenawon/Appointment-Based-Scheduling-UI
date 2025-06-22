@@ -77,7 +77,7 @@ function BookingPage() {
                 location: '',
                 timeSlot: '',
                 status: '',
-                organiserEmail: ''
+                organiserEmail: formData.organiserEmail
             });
 
         } catch (err) {
