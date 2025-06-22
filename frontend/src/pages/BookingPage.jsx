@@ -1,7 +1,7 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './BookingPage.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BookingService from '../api/bookingService'; 
 
 function BookingPage() {
@@ -16,6 +16,16 @@ function BookingPage() {
         status: '',
         organiserEmail: ''
     });
+    useEffect(() => {
+    // Load the organiser email from localStorage
+    const email = localStorage.getItem('userEmail'); 
+    if (email) {
+        setFormData(prev => ({
+            ...prev,
+            organiserEmail: email
+        }));
+    }
+}, []);
     const [error, setError] = useState('');
 
     const handleSubmit = async () => {

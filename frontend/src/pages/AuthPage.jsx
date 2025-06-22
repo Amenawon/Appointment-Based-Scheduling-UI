@@ -13,8 +13,10 @@ function AuthPage() {
         if (!email || !password) return;
 
         const result = await login(email, password);
+        console.log('Login result:', result);
 
         if (result.success) {
+            localStorage.setItem('userEmail', result.data.email);
             navigate('/booking');
         } else {
             alert(`Login failed: ${result.error}`);
