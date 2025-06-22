@@ -50,7 +50,7 @@ function BookingPage() {
                     role: 'Attendee',
                     rsvpStatus: 'Accepted'
                 })),
-                durationMinutes: parseInt(formData.duration),
+                duration: parseInt(formData.duration),
                 title: formData.title,
                 description: formData.description,
                 location: formData.location,
