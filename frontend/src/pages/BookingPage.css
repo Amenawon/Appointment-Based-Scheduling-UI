@@ -1,8 +1,8 @@
 
 .booking-container {
     display: flex;
-    gap: 20px;
-    min-height: 100vh;
+    gap: 15px;
+    height: 100vh;
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -12,7 +12,9 @@
 .left-column input[type="text"] { 
     width: 200px;
 }
-.middle-column { flex: 2; }
+.middle-column { 
+    flex: 2;
+ }
 .right-column { 
     flex: 1;
     display: flex;
@@ -27,4 +29,27 @@
 }
 .app-book-btn {
     font-size: 20px;
+}
+
+.time-label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-right: 20px;
+}
+
+.time-select {
+    font-size: 16px;
+    width: 130px;
+    margin-bottom: 1rem;
+}
+
+.minute-row {
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.hour-row {
+  align-items: center;
+  margin-bottom: 1rem;
 }

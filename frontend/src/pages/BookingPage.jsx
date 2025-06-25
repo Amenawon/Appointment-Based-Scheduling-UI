@@ -26,6 +26,12 @@ function BookingPage() {
     }
 }, []);
     const [error, setError] = useState('');
+    const [selectedHour, setSelectedHour] = useState('');
+    const [selectedMinute, setSelectedMinute] = useState('');
+
+    const hours = Array.from({ length: 13 }, (_, i) => (i + 7).toString().padStart(2, '0')); // "07" to "19"
+    const minutes = Array.from({ length: 12 }, (_, i) => (i * 5).toString().padStart(2, '0')); // "00" to "55"
+
 
     const handleSubmit = async () => {
         console.log("Submit triggered!", { selectedDate, formData });
@@ -35,10 +41,13 @@ function BookingPage() {
             return;
         }
 
+        const chosenTime = selectedHour + ':' + selectedMinute;
+        console.log(chosenTime);
+
         try {
             // Prepare data for API
             const appointmentData = {
-                date: selectedDate.toLocaleString().split(',')[0], // Format as YYYY-MM-DD
+                date: selectedDate.toLocaleString().split(',')[0] + ' ' + chosenTime, 
                 time: formData.timeSlot, 
                 listAttendees: formData.listAttendees
                 .split(',')
@@ -165,7 +174,28 @@ function BookingPage() {
                 />
             </div>
             <div className="column right-column">
-                <h2>Available time slots</h2>
+                <h2>Choose time</h2>
+
+                <div className="hour-row">
+                    <label className="time-label">Hour: </label>
+                <select className="time-select" value={selectedHour} onChange={(e) => setSelectedHour(e.target.value)}>
+                    <option value="">Select Hour</option>
+                    {hours.map((hour) => (
+                    <option key={hour} value={hour}>{hour}</option>
+                    ))}
+                </select>
+                </div>
+                
+                <div className="minute-row">
+                    <label className="time-label">Minute: </label>
+                <select className="time-select" value={selectedMinute} onChange={(e) => setSelectedMinute(e.target.value)}>
+                    <option value="">Select Minute</option>
+                    {minutes.map((minute) => (
+                    <option key={minute} value={minute}>{minute}</option>
+                    ))}
+                </select>
+                </div> 
+
                 <button className="app-book-btn" onClick={handleSubmit}>Book</button>
             </div>
         </div>
