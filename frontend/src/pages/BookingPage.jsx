@@ -82,8 +82,7 @@ function BookingPage() {
                 title: '',
                 description: '',
                 location: '',
-                timeSlot: '',
-                organiserEmail: formData.organiserEmail
+                timeSlot: ''
             });
 
         } catch (err) {
@@ -118,15 +117,6 @@ function BookingPage() {
                     }}
                     placeholder="Enter attendee emails" 
                     className="attendees-textbox"
-                />
-                <h2>Add Organiser email</h2>
-                <input 
-                    type="text" 
-                    name="organiserEmail" 
-                    value={formData.organiserEmail}
-                    onChange={handleInputChange}
-                    placeholder="Enter Organiser email here" 
-                    className="organiser-email-textbox"
                 />
                 <h2>Appointment duration</h2>
                 <input 
