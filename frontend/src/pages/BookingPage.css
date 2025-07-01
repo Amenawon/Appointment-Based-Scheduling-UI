@@ -2,7 +2,7 @@
 .booking-container {
     display: flex;
     gap: 15px;
-    height: 100vh;
+    height: 80vh;
     margin-left: 20px;
     margin-right: 20px;
 }
