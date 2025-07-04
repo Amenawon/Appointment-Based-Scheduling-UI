@@ -53,3 +53,13 @@
   align-items: center;
   margin-bottom: 1rem;
 }
+
+.header-greeting {
+    display: flex;
+    justify-self: flex-end;
+    padding: 1rem;
+}
+
+.header-greeting button {
+    margin-left: 1rem;
+}
