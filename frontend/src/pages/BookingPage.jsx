@@ -2,10 +2,15 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './BookingPage.css';
 import React, { useEffect, useState } from 'react';
+import { logout } from '../api/authService';
+import { useNavigate } from 'react-router-dom';
 import BookingService from '../api/bookingService'; 
 
 function BookingPage() {
+    const navigate = useNavigate();
+
     const [selectedDate, setSelectedDate] = useState(null);
+    const [userName, setUserName] = useState('');
     const [formData, setFormData] = useState({
         listAttendees: '',
         duration: '',
@@ -17,12 +22,16 @@ function BookingPage() {
     });
     useEffect(() => {
     // Load the organiser email from localStorage
-    const email = localStorage.getItem('userEmail'); 
+    const email = localStorage.getItem('userEmail');
+    const userName = localStorage.getItem('userName');
     if (email) {
         setFormData(prev => ({
             ...prev,
             organiserEmail: email
         }));
+    }
+    if (userName) {
+        setUserName(userName); 
     }
 }, []);
     const [error, setError] = useState('');
@@ -74,7 +83,7 @@ function BookingPage() {
             console.log('Booking successful:', response);
             alert('Appointment booked successfully!');
             
-            // Reset form (optional)
+            // Reset form
             setSelectedDate(null);
             setFormData({
                 listAttendees: '',
@@ -99,8 +108,16 @@ function BookingPage() {
         }));
     };
 
+    const handleLogout = () => {
+    logout();                         // Remove token from localStorage
+    localStorage.removeItem('userName'); // Optional: remove any other data
+    localStorage.removeItem('userEmail');
+    navigate('/');                   // Redirect to login or home page
+    };
+
     return (
         <div>
+            <HeaderGreeting userName={userName} onLogout={handleLogout} />
             <h1>Booking page</h1>
         <div className="booking-container">
             <div className="column left-column">
@@ -189,6 +206,15 @@ function BookingPage() {
                 <button className="app-book-btn" onClick={handleSubmit}>Book</button>
             </div>
         </div>
+    </div>
+    );
+}
+
+function HeaderGreeting({ userName, onLogout }) {
+    return (
+        <div className="header-greeting">
+            <span> Hello, <strong>{userName}</strong></span>
+            <button onClick={onLogout}>Logout</button>
         </div>
     );
 }

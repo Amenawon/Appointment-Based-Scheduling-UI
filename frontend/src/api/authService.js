@@ -14,11 +14,15 @@ export async function login(email, password) {
 
             const decoded = jwtDecode(token.result);
             const emailClaim = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress";
+            const nameClaim = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name";
             const userEmail = decoded[emailClaim];
+            const userName = decoded[nameClaim];
+            console.log('Decoded token:', decoded);
             console.log('Email:', userEmail);
 
             localStorage.setItem('token', token);
             localStorage.setItem('userEmail', userEmail);
+            localStorage.setItem('userName', userName);
 
         return { 
             success: true,
