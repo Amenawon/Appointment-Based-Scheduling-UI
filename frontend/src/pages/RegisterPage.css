@@ -1,0 +1,41 @@
+.registration-form {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 20px;
+}
+
+.registration-form h1 {
+    color: #8d8c8c;
+    margin-bottom: 20px;
+    -webkit-text-stroke: 0.2px white;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+input {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.register-btn {
+  margin-top: 20px;
+  padding: 10px;
+  width: 50%;
+  color: #8d8c8c;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.register-btn:hover {
+  background: #5e5e5e;
+}
