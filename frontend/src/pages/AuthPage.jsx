@@ -1,7 +1,6 @@
-// src/pages/AuthPage.jsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../api/authService'; // Make sure this path is correct
+import { login } from '../api/authService';
 import './AuthPage.css';
 
 function AuthPage() {
@@ -38,6 +37,7 @@ function AuthPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
+            <a href="/register" class="register-link">Register</a>
             <button className="auth-submit-btn" onClick={handleLogin}>
                 Submit
             </button>
