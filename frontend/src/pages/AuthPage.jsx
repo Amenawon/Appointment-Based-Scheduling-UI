@@ -37,7 +37,10 @@ function AuthPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
-            <a href="/register" class="register-link">Register</a>
+            <div className="links">
+                <a href="/register" class="register-link">Register</a>
+                <a href="/booking" class="continue-as-guest-link">Continue as a guest</a>
+            </div>
             <button className="auth-submit-btn" onClick={handleLogin}>
                 Submit
             </button>
