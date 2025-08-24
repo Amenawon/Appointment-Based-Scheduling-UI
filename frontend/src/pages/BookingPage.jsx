@@ -9,6 +9,7 @@ import BookingService from '../api/bookingService';
 function BookingPage() {
     const navigate = useNavigate();
 
+    const [isGuest, setIsGuest] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
     const [userName, setUserName] = useState('');
     const [formData, setFormData] = useState({
@@ -29,6 +30,8 @@ function BookingPage() {
             ...prev,
             organiserEmail: email
         }));
+    } else {
+        setIsGuest(true);
     }
     if (userName) {
         setUserName(userName); 
@@ -121,6 +124,19 @@ function BookingPage() {
             <h1>Booking page</h1>
         <div className="booking-container">
             <div className="column left-column">
+                {isGuest && (
+                    <>
+                    <h2>Provide organiser email</h2>
+                    <input 
+                    type="text" 
+                    name="organiserEmail" 
+                    value={formData.organiserEmail}
+                    onChange={handleInputChange}
+                    placeholder="Enter organiser email" 
+                    className="organiser-email-textbox"
+                />
+                </>
+                )}
                 <h2>Choose attendees</h2>
                 <input 
                     type="text" 
@@ -211,9 +227,10 @@ function BookingPage() {
 }
 
 function HeaderGreeting({ userName, onLogout }) {
+    const displayedUsername = userName ? userName : "Guest";
     return (
         <div className="header-greeting">
-            <span> Hello, <strong>{userName}</strong></span>
+            <span> Hello, <strong>{displayedUsername}</strong></span>
             <button onClick={onLogout}>Logout</button>
         </div>
     );
