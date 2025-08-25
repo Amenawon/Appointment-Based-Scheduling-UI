@@ -74,7 +74,8 @@ function BookingPage() {
                 title: formData.title,
                 description: formData.description,
                 location: formData.location,
-                organiserEmail: formData.organiserEmail
+                organiserEmail: formData.organiserEmail,
+                isGuest: isGuest
             };
             console.log(selectedDate)
             console.log(appointmentData.date)
