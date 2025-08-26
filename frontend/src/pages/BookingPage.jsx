@@ -229,10 +229,26 @@ function BookingPage() {
 
 function HeaderGreeting({ userName, onLogout }) {
     const displayedUsername = userName ? userName : "Guest";
+    const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate();
+
+    const handleToggle = () => setIsOpen(!isOpen);
+    const goToDashboard = () => navigate('/dashboard');
     return (
         <div className="header-greeting">
-            <span> Hello, <strong>{displayedUsername}</strong></span>
-            <button onClick={onLogout}>Logout</button>
+            <div className="user-inline">
+                <span> Hello, <strong>{displayedUsername}</strong></span>
+                <button className="user-menu-button" onClick={handleToggle}>
+                    ▼
+                </button>
+            </div>
+
+            {isOpen && (
+                <div className="user-dropdown">
+                    <button onClick={goToDashboard}>Dashboard</button>
+                    <button onClick={onLogout}>Logout</button>
+                </div>
+            )}
         </div>
     );
 }
