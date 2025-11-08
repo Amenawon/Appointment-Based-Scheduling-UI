@@ -1,4 +1,4 @@
-# 🗓️ Appointment Scheduling System — Frontend (React)
+# 🗓️ Appointment Scheduling System Frontend
 
 This repository contains the **frontend user interface** for the Appointment Scheduling System.  
 The UI is built with **React** and provides functionality for managing appointments, attendees, and user authentication.
